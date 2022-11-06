@@ -1,0 +1,69 @@
+/* Angular Material Theme, and Typography customization */
+@use '@angular/material' as mat;
+@use 'node_modules/@angular/material/_theming.scss';
+
+/**
+ * Define a custom typography config that overrides font-family, and all levels.
+ */
+
+$custom-typography: mat.define-typography-config(
+  $font-family: 'Roboto, monospace, "Helvetica Neue", sans-serif',
+  $display-4: mat.define-typography-level(112px, 112px, 300),
+  $display-3: mat.define-typography-level(56px, 56px, 400),
+  $display-2: mat.define-typography-level(45px, 48px, 400),
+  $display-1: mat.define-typography-level(34px, 40px, 400),
+  $headline: mat.define-typography-level(24px, 32px, 400),
+  $title: mat.define-typography-level(20px, 32px, 500),
+  $subheading-2: mat.define-typography-level(16px, 28px, 400),
+  $subheading-1: mat.define-typography-level(15px, 24px, 400),
+  $body-2: mat.define-typography-level(14px, 24px, 500),
+  $body-1: mat.define-typography-level(14px, 20px, 400),
+  $caption: mat.define-typography-level(12px, 20px, 400),
+  $button: mat.define-typography-level(14px, 14px, 500),
+  $input: mat.define-typography-level(inherit, 1.125, 400),
+);
+
+/**
+ * Include the common styles for Angular Material. Include this here so that you only
+ * have to load a single css file for Angular Material in your app.
+ * Be sure to include this mixin once!
+ * Custom typography config is passed to mat-core.
+ */
+@include mat.core($custom-typography);
+
+/* Define a custom light theme. */
+$candy-app-primary: mat.define-palette(mat.$green-palette, 600);
+$candy-app-accent: mat.define-palette(mat.$deep-orange-palette, 500);
+$candy-app-warn: mat.define-palette(mat.$red-palette, 800);
+$candy-app-theme: mat.define-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+/* Include the custom light theme styles. */
+@include mat.all-component-themes($candy-app-theme);
+
+/* Define an alternate dark theme. */
+$unicorn-dark-primary: mat.define-palette(mat.$deep-orange-palette, 800);
+$unicorn-dark-accent: mat.define-palette(mat.$yellow-palette, 400);
+$unicorn-dark-warn: mat.define-palette(mat.$orange-palette, 300);
+$unicorn-dark-theme: mat.define-dark-theme($unicorn-dark-primary, $unicorn-dark-accent, $unicorn-dark-warn);
+
+/**
+ * Include the alternative theme styles inside of a block with a CSS class.
+ * This CSS class can be whatever is needed. Any component inside of an element with
+ * `.unicorn-dark-theme` will be affected by the alternate dark theme instead of the light theme.
+ */
+
+.unicorn-dark-theme {
+  @include mat.all-component-themes($unicorn-dark-theme);
+}
+
+/**
+ * Material Theming extension.
+ * Imports and includes variables, and mixins:
+ * custom-selectors-colouring, custom-colouring-classes
+ */
+@import 'libs/client-core/src/lib/styles/theming-extension.scss';
+
+/**
+ * Global common theming styles.
+ */
+@import 'libs/client-core/src/lib/styles/theming-common.scss';

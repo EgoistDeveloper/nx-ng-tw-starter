@@ -1,0 +1,43 @@
+{
+  "name": "backend-interfaces",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend-interfaces/src",
+  "tags": ["scope:backend-interfaces", "type:util"],
+  "targets": {
+    "generate-client-definitions": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx graphql-codegen --config libs/backend-interfaces/codegen.yml && find libs/client-gql/src/lib/generated/ -type f -name \"*.ts\" -exec sed -i \"s/Scalars/IScalars/g\" {} + && ng lint client-gql --fix",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/backend-interfaces/.eslintrc.json",
+        "lintFilePatterns": ["libs/backend-interfaces/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/backend-interfaces/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/backend-interfaces"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/backend-interfaces/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/backend-interfaces"]
+    }
+  }
+}

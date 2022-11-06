@@ -1,0 +1,56 @@
+{
+  "name": "client-core-components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "app",
+  "projectType": "library",
+  "sourceRoot": "libs/client-core-components/src",
+  "tags": ["scope:client-core-components", "type:feature"],
+  "targets": {
+    "build-storybook": {
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "documentation:build:storybook",
+        "compodoc": false,
+        "configDir": "libs/client-core-components/.storybook",
+        "outputDir": "dist/storybook/client-core-components"
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/client-core-components/.eslintrc.json",
+        "lintFilePatterns": ["libs/client-core-components/**/*.ts", "libs/client-core-components/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "documentation:build:storybook",
+        "compodoc": false,
+        "configDir": "libs/client-core-components/.storybook",
+        "port": 4400
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/client-core-components/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/client-core-components"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/client-core-components/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/client-core-components"]
+    }
+  }
+}

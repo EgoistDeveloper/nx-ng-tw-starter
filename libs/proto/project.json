@@ -1,0 +1,25 @@
+{
+  "name": "proto",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "app",
+  "projectType": "library",
+  "sourceRoot": "libs/proto/src",
+  "tags": ["scope:proto", "type:data-access"],
+  "targets": {
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/proto/.eslintrc.json",
+        "lintFilePatterns": ["libs/proto/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/proto/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/proto"]
+    }
+  }
+}

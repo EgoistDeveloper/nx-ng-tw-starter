@@ -1,0 +1,114 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "cli": {
+    "cache": {
+      "enabled": true,
+      "environment": "all",
+      "path": ".angular/cache"
+    },
+    "warnings": {
+      "versionMismatch": false
+    }
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "e2eTestRunner": "cypress",
+      "linter": "eslint",
+      "style": "scss",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "changeDetection": "OnPush",
+      "inlineStyle": false,
+      "inlineTemplate": false,
+      "style": "scss"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/schematics:application": {
+      "framework": "angular",
+      "style": "scss",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/web:application": {
+      "e2eTestRunner": "cypress",
+      "linter": "eslint",
+      "style": "scss",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/web:library": {
+      "linter": "eslint",
+      "style": "scss",
+      "unitTestRunner": "jest"
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "prod": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/**/*.md",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/.eslintrc.json"
+    ],
+    "rootLinterConfig": [
+      "{workspaceRoot}/.eslintignore",
+      "{workspaceRoot}/.eslintrc.js",
+      "{workspaceRoot}/.eslintrc.*.js",
+      "{workspaceRoot}/.prettierignore",
+      "{workspaceRoot}/.prettierrc"
+    ],
+    "rootTestConfig": ["{workspaceRoot}/jest.config.ts", "{workspaceRoot}/jest.preset.js"],
+    "sharedGlobals": [
+      "{workspaceRoot}/babel.config.json",
+      "{workspaceRoot}/angular.json",
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/tsconfig.base.json"
+    ]
+  },
+  "newProjectRoot": "",
+  "npmScope": "app",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^prod"]
+    },
+    "build-storybook": {
+      "inputs": ["default", "^default", "{workspaceRoot}/.storybook/**/*"]
+    },
+    "e2e": {
+      "inputs": ["default", "^default"]
+    },
+    "lint": {
+      "inputs": ["default", "^prod", "rootLinterConfig"]
+    },
+    "test": {
+      "inputs": ["default", "^prod", "rootTestConfig"]
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheDirectory": "/tmp/nx/nx-ng-starter",
+        "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook", "tsc-check"],
+        "parallel": 1,
+        "runtimeCacheInputs": ["node -v", "echo $IMPORTANT_ENV_VAR"]
+      },
+      "runner": "nx/tasks-runners/default"
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "libs"
+  }
+}

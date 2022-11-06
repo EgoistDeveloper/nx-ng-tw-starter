@@ -1,0 +1,32 @@
+{
+  "name": "backend-grpc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend-grpc/src",
+  "tags": ["scope:backend-grpc", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/backend-grpc/.eslintrc.json",
+        "lintFilePatterns": ["libs/backend-grpc/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/backend-grpc/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/backend-grpc"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/backend-grpc/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/backend-grpc"]
+    }
+  }
+}

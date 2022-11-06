@@ -1,0 +1,32 @@
+{
+  "name": "backend-logger",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend-logger/src",
+  "tags": ["scope:backend-logger", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/backend-logger/.eslintrc.json",
+        "lintFilePatterns": ["libs/backend-logger/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/backend-logger/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/backend-logger"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/backend-logger/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/backend-logger"]
+    }
+  }
+}

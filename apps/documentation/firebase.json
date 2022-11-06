@@ -1,0 +1,74 @@
+{
+  "hosting": {
+    "headers": [
+      {
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "https://nx-ng-starter-documentation.firebaseapp.com https://nx-ng-starter-documentation.web.app"
+          },
+          {
+            "key": "Access-Control-Allow-Methods",
+            "value": "GET,PUT,POST,DELETE,OPTIONS,HEAD"
+          }
+        ],
+        "source": "**"
+      },
+      {
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=7200"
+          }
+        ],
+        "source": "**/*.@(jpg|jpeg|gif|png|svg)"
+      },
+      {
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, no-cache, no-store, must-ravalidate, max-age=0"
+          },
+          {
+            "key": "Expires",
+            "value": "-1"
+          },
+          {
+            "key": "Pragma",
+            "value": "no-cache"
+          }
+        ],
+        "source": "/api/**"
+      }
+    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/src/**"],
+    "public": "./dist/apps/documentation",
+    "rewrites": [
+      {
+        "function": "login",
+        "source": "/api/auth/login"
+      },
+      {
+        "function": "logout",
+        "source": "/api/auth/logout"
+      },
+      {
+        "function": "signup",
+        "source": "/api/auth/signup"
+      },
+      {
+        "function": "ping",
+        "source": "/api/auth"
+      },
+      {
+        "function": "graphql",
+        "source": "/api/graphql"
+      },
+      {
+        "destination": "/index.html",
+        "source": "**/!(*.*|api*)"
+      }
+    ],
+    "site": "nx-ng-starter-documentation"
+  }
+}

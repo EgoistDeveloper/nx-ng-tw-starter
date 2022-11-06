@@ -1,0 +1,49 @@
+{
+  "name": "client-d3-charts",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "app",
+  "projectType": "library",
+  "sourceRoot": "libs/client-d3-charts/src",
+  "tags": ["scope:client-d3-charts", "type:ui"],
+  "targets": {
+    "build": {
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/client-d3-charts/tsconfig.lib.json"
+        },
+        "production": {
+          "tsConfig": "libs/client-d3-charts/tsconfig.lib.prod.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "project": "libs/client-d3-charts/ng-package.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/libs/client-d3-charts"]
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/client-d3-charts/.eslintrc.json",
+        "lintFilePatterns": ["libs/client-d3-charts/src/**/*.ts", "libs/client-d3-charts/src/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/client-d3-charts/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/client-d3-charts"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/client-d3-charts/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/client-d3-charts"]
+    }
+  }
+}

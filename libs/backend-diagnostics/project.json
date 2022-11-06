@@ -1,0 +1,32 @@
+{
+  "name": "backend-diagnostics",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/backend-diagnostics/src",
+  "tags": ["scope:backend-diagnostics", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/backend-diagnostics/.eslintrc.json",
+        "lintFilePatterns": ["libs/backend-diagnostics/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/backend-diagnostics/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/backend-diagnostics"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/backend-diagnostics/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/backend-diagnostics"]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+name: validate-codeowners
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.ref_name }}.${{ github.sha }}.validate-codeowners
+  cancel-in-progress: true
+
+jobs:
+  codeowners:
+    runs-on: ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.get-codeowners.outputs.matrix }}
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Get codeowners
+        id: get-codeowners
+        run: npx nx run tools:action-codeowners
+
+  validate:
+    needs: codeowners
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        name: ${{ fromJSON(needs.codeowners.outputs.matrix) }}
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+
+      - name: Validate a codeowner
+        uses: ./.github/actions/validate-codeowner
+        with:
+          name: ${{ matrix.name }}

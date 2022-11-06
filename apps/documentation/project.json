@@ -1,0 +1,213 @@
+{
+  "name": "documentation",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "app",
+  "projectType": "application",
+  "sourceRoot": "apps/documentation/src",
+  "tags": ["scope:documentation", "type:application"],
+  "targets": {
+    "build": {
+      "configurations": {
+        "analyze-bundle": {
+          "buildOptimizer": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/documentation/src/environments/environment.ts",
+              "with": "apps/documentation/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all"
+        },
+        "production": {
+          "buildOptimizer": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/documentation/src/environments/environment.ts",
+              "with": "apps/documentation/src/environments/environment.prod.ts"
+            }
+          ],
+          "namedChunks": false,
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "vendorChunk": false
+        },
+        "storybook": {
+          "assets": [
+            {
+              "glob": "**/*.*",
+              "input": "./libs/client-core/src/lib/assets",
+              "output": "assets"
+            }
+          ],
+          "polyfills": "",
+          "scripts": [],
+          "styles": [
+            "apps/documentation/src/styles.scss",
+            "libs/client-core/src/lib/styles/styles.scss",
+            "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+            "node_modules/material-design-icon-fonts-self-hosted-web/iconfont/material-icons.css"
+          ],
+          "tsConfig": "apps/documentation/.storybook/tsconfig.json"
+        }
+      },
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "allowedCommonJsDependencies": ["hammerjs", "memo-decorator", "moment"],
+        "aot": true,
+        "assets": [
+          "apps/documentation/src/favicon.ico",
+          "apps/documentation/src/assets",
+          {
+            "glob": "**/*.*",
+            "input": "./libs/client-core/src/lib/assets",
+            "output": "assets"
+          },
+          {
+            "glob": "*.md",
+            "input": "./",
+            "output": "md/"
+          },
+          {
+            "glob": "**/*.md",
+            "input": "apps",
+            "output": "md/apps"
+          },
+          {
+            "glob": "**/*.md",
+            "input": "libs",
+            "output": "md/libs"
+          },
+          {
+            "glob": "**/*.md",
+            "input": "tools",
+            "output": "md/tools"
+          }
+        ],
+        "baseHref": "/",
+        "budgets": [
+          {
+            "maximumError": "15mb",
+            "maximumWarning": "12mb",
+            "type": "initial"
+          },
+          {
+            "maximumError": "10kb",
+            "maximumWarning": "6kb",
+            "type": "anyComponentStyle"
+          }
+        ],
+        "buildOptimizer": false,
+        "index": "apps/documentation/src/index.html",
+        "main": "apps/documentation/src/main.ts",
+        "namedChunks": true,
+        "optimization": {
+          "fonts": false,
+          "scripts": false,
+          "styles": {
+            "inlineCritical": false,
+            "minify": false
+          }
+        },
+        "outputHashing": "none",
+        "outputPath": "dist/apps/documentation",
+        "polyfills": "apps/documentation/src/polyfills.ts",
+        "scripts": [
+          "node_modules/dompurify/dist/purify.min.js",
+          "tools/js/trusted-types.policy.js",
+          "node_modules/marked/lib/marked.umd.js",
+          "node_modules/prismjs/prism.js",
+          "node_modules/prismjs/components/prism-csharp.min.js",
+          "node_modules/prismjs/components/prism-css.min.js",
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.min.js",
+          "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.min.js",
+          "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
+          "node_modules/katex/dist/katex.min.js"
+        ],
+        "sourceMap": true,
+        "styles": [
+          "apps/documentation/src/styles.scss",
+          "libs/client-core/src/lib/styles/styles.scss",
+          "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+          "node_modules/material-design-icon-fonts-self-hosted-web/iconfont/material-icons.css",
+          "node_modules/prismjs/themes/prism-okaidia.css",
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+          "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
+          "node_modules/katex/dist/katex.min.css"
+        ],
+        "tsConfig": "apps/documentation/tsconfig.app.json",
+        "vendorChunk": true
+      }
+    },
+    "build-storybook": {
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "documentation:build:storybook",
+        "compodoc": false,
+        "configDir": "apps/documentation/.storybook",
+        "outputDir": "dist/storybook/documentation"
+      }
+    },
+    "configure-env": {
+      "executor": "./tools/executors/client-env:configure",
+      "options": {
+        "app": "documentation"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "documentation:build"
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "apps/documentation/.eslintrc.json",
+        "lintFilePatterns": ["apps/documentation/**/*.ts", "apps/documentation/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "serve": {
+      "configurations": {
+        "production": {
+          "browserTarget": "documentation:build:production"
+        }
+      },
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "documentation:build"
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "documentation:build:storybook",
+        "compodoc": false,
+        "configDir": "apps/documentation/.storybook",
+        "port": 4400
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/documentation/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/apps/documentation"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "apps/documentation/tsconfig.app.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/apps/documentation"]
+    }
+  }
+}

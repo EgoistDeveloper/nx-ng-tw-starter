@@ -1,0 +1,39 @@
+{
+  "name": "documentation-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": ["documentation"],
+  "projectType": "application",
+  "sourceRoot": "apps/documentation-e2e/src",
+  "tags": ["scope:documentation-e2e", "type:e2e"],
+  "targets": {
+    "e2e": {
+      "configurations": {
+        "production": {
+          "devServerTarget": "documentation:serve:production"
+        }
+      },
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/documentation-e2e/cypress.config.js",
+        "devServerTarget": "documentation:serve",
+        "testingType": "e2e",
+        "tsConfig": "apps/documentation-e2e/tsconfig.e2e.json"
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "apps/documentation-e2e/.eslintrc.json",
+        "lintFilePatterns": ["apps/documentation-e2e/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "apps/documentation-e2e/tsconfig.e2e.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/apps/documentation-e2e"]
+    }
+  }
+}

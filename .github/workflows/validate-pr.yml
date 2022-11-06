@@ -1,0 +1,83 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: validate-pr
+
+on:
+  pull_request:
+    branches: [main]
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.head_ref }}.${{ github.sha }}.validate-pr
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    outputs:
+      changes: ${{ steps.check-changes.outputs.changes }}
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Check changes
+        id: check-changes
+        uses: ./.github/actions/check-changes
+        with:
+          premerge: 'true'
+          trunk: 'main'
+
+  premerge:
+    needs: checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Validate commit messages
+        run: |
+          git checkout -b premerge
+          git fetch origin main:main
+          npx --no-install commitlint --from main
+
+      - name: Lint shell
+        if: fromJSON(needs.checks.outputs.changes).shelltools == 'true'
+        run: |
+          sudo apt install shellcheck
+          yarn lint:shell
+
+      - name: Lint affected
+        run: npx nx affected --target lint --base origin/main --head HEAD --parallel --max-parallel 2
+
+      - name: Unit test affected
+        run: |
+          npx nx affected --target test --base origin/main --head HEAD --pass-with-no-tests --code-coverage --run-in-band --ci
+          npx nx run tools:coverage-stats
+          cat ./UNIT_COVERAGE.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Build affected
+        run: npx nx affected --target build --base origin/main --head HEAD
+
+      - name: Build storybook affected
+        run: npx nx affected --target build-storybook --base origin/main --head HEAD
+
+      - name: Build global storybook
+        if: ${{ fromJSON(needs.checks.outputs.changes).dependencies == 'true' || fromJSON(needs.checks.outputs.changes).storybook == 'true' || fromJSON(needs.checks.outputs.changes).src == 'true' }}
+        run: npx nx run documentation:build-storybook

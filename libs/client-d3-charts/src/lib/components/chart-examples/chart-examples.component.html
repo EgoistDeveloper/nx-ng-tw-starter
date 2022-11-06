@@ -1,0 +1,31 @@
+<div class="container" *ngIf="barChartConfig$ | async as config">
+  <app-bar-chart [chartId]="'bar-example-1'" [data]="config.data" [options]="config.options"></app-bar-chart>
+</div>
+
+<hr [ngStyle]="{ width: '100%' }" />
+
+<div class="container" *ngIf="lineChartConfig$ | async as config">
+  <app-line-chart [chartId]="'line-example-1'" [data]="config.data" [options]="config.options"></app-line-chart>
+</div>
+
+<hr [ngStyle]="{ width: '100%' }" />
+
+<div class="container" *ngIf="radarChartConfig$ | async as config">
+  <app-radar-chart [chartId]="'radar-example-1'" [data]="config.data" [options]="config.options"></app-radar-chart>
+</div>
+
+<hr [ngStyle]="{ width: '100%' }" />
+
+<div class="container" *ngIf="pieChartConfig$ | async as config">
+  <app-pie-chart [chartId]="'pie-example-1'" [data]="config.data" [options]="config.options"></app-pie-chart>
+</div>
+
+<hr [ngStyle]="{ width: '100%' }" />
+
+<div class="container" *ngIf="forceDirectedChartConfig$ | async as config">
+  <app-force-directed-chart
+    [chartId]="'force-directed-example-1'"
+    [data]="config.data"
+    [options]="config.options"
+  ></app-force-directed-chart>
+</div>

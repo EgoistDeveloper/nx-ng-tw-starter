@@ -1,0 +1,33 @@
+{
+  "name": "client-core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "app",
+  "projectType": "library",
+  "sourceRoot": "libs/client-core/src",
+  "tags": ["scope:client-core", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/client-core/.eslintrc.json",
+        "lintFilePatterns": ["libs/client-core/**/*.ts", "libs/client-core/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/client-core/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/client-core"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/client-core/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/client-core"]
+    }
+  }
+}

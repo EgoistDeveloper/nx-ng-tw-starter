@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["js", "ts", "generators"],
+  "exclude": ["jest.config.ts"]
+}

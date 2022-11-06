@@ -1,0 +1,49 @@
+{
+  "name": "client-util-eliza",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "app",
+  "projectType": "library",
+  "sourceRoot": "libs/client-util-eliza/src",
+  "tags": ["scope:client-util-eliza", "type:util"],
+  "targets": {
+    "build": {
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/client-util-eliza/tsconfig.lib.json"
+        },
+        "production": {
+          "tsConfig": "libs/client-util-eliza/tsconfig.lib.prod.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "project": "libs/client-util-eliza/ng-package.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/libs/client-util-eliza"]
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/client-util-eliza/.eslintrc.json",
+        "lintFilePatterns": ["libs/client-util-eliza/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/client-util-eliza/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/client-util-eliza"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/client-util-eliza/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/client-util-eliza"]
+    }
+  }
+}

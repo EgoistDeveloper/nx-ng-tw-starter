@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "cli": "nx",
+  "description": "Configures secret environment variables of the client applications.",
+  "properties": {
+    "app": {
+      "type": "string",
+      "enum": ["client", "documentation", "elements"],
+      "description": "Application name to set environment for."
+    },
+    "dryRun": {
+      "type": "boolean",
+      "description": "Execute all logic without flushing the file system changes."
+    },
+    "reset": {
+      "type": "boolean",
+      "description": "Reset application environment."
+    }
+  },
+  "required": ["app"]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@rfprodz/client-util-eliza",
+  "version": "1.1.7",
+  "description": "Angular chatbot logic based on Eliza (https://en.wikipedia.org/wiki/ELIZA).",
+  "keywords": [
+    "angular-chatbot",
+    "angular-chatbot-module",
+    "angular-chatbot-service",
+    "angular-eliza-bot"
+  ],
+  "homepage": "https://github.com/rfprod/nx-ng-starter",
+  "bugs": {
+    "url": "https://github.com/rfprod/nx-ng-starter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfprod/nx-ng-starter"
+  },
+  "license": "MIT",
+  "author": "rfprod <zoidenmacht@zoho.com>",
+  "dependencies": {
+    "tslib": "2.4.1"
+  },
+  "peerDependencies": {
+    "@angular/core": "14.2.8"
+  }
+}

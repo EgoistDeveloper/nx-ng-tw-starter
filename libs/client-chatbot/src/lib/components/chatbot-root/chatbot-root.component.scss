@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  max-width: calc(100% - 28px);
+  height: calc(100% - 28px);
+  padding: 14px;
+}
+
+.messages-list {
+  height: calc(100% - 150px);
+  min-height: 150px;
+}
+
+.message {
+  border-bottom: 1px dotted;
+
+  &--user {
+    &::before {
+      content: '💭';
+    }
+  }
+
+  &--bot {
+    &::before {
+      content: '🤖';
+    }
+  }
+}
+
+.form {
+  width: 100%;
+}

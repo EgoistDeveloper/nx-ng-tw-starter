@@ -1,0 +1,162 @@
+{
+  "name": "tools",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "tools",
+  "tags": ["scope:tools", "type:workspace"],
+  "targets": {
+    "action-changes": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/actions/changes.ts",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "action-codeowners": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/actions/codeowners.ts",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "compodoc-build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "compodoc -p tsconfig.compodoc.json -d ./dist/compodoc",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "compodoc-serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "compodoc -p tsconfig.compodoc.json -s",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "coverage-stats": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/coverage-stats.ts",
+            "forwardAllArgs": false
+          }
+        ]
+      }
+    },
+    "help": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/package-commands.ts"
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "tools/.eslintrc.json",
+        "lintFilePatterns": ["tools/generators/**/*.ts", "tools/ts/**/*.ts", "tools/js/**/*.js", "/*.*.js"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "tools/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/tools"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "tools/tsconfig.tools.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/tools"]
+    },
+    "tsc-configure": {
+      "executor": "./tools/executors/tsc:configure",
+      "options": {
+        "tsConfig": ""
+      }
+    },
+    "migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --check --jsonUpgraded",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --migrate=update",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --cleanup",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false,
+        "color": true
+      }
+    },
+    "migrate-bulk-confirm": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --check --jsonUpgraded",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --migrate=update --bulkUserChoice=true",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --cleanup;",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false,
+        "color": true
+      }
+    },
+    "migrate-only": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "yarn install && yarn ngcc && npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --migrate=only",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "npx ts-node -P ./tools/tsconfig.ts-tools.json ./tools/ts/workspace/update.ts --cleanup",
+            "forwardAllArgs": false
+          }
+        ],
+        "parallel": false,
+        "color": true
+      }
+    }
+  }
+}

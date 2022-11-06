@@ -1,0 +1,56 @@
+{
+  "name": "client-diagnostics",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "prefix": "app",
+  "projectType": "library",
+  "sourceRoot": "libs/client-diagnostics/src",
+  "tags": ["scope:client-diagnostics", "type:feature"],
+  "targets": {
+    "build-storybook": {
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "documentation:build:storybook",
+        "compodoc": false,
+        "configDir": "libs/client-diagnostics/.storybook",
+        "outputDir": "dist/storybook/client-diagnostics"
+      }
+    },
+    "lint": {
+      "executor": "@angular-eslint/builder:lint",
+      "options": {
+        "eslintConfig": "libs/client-diagnostics/.eslintrc.json",
+        "lintFilePatterns": ["libs/client-diagnostics/**/*.ts", "libs/client-diagnostics/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "documentation:build:storybook",
+        "compodoc": false,
+        "configDir": "libs/client-diagnostics/.storybook",
+        "port": 4400
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/client-diagnostics/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/client-diagnostics"]
+    },
+    "tsc-check": {
+      "executor": "./tools/executors/tsc:check",
+      "options": {
+        "tsConfig": "libs/client-diagnostics/tsconfig.lib.json"
+      },
+      "outputs": ["{workspaceRoot}/dist/out-tsc/libs/client-diagnostics"]
+    }
+  }
+}
