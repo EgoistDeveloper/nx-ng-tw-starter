@@ -300,7 +300,6 @@
     "jest-environment-jsdom": "29.2.2",
     "jest-preset-angular": "12.2.2",
     "marked": "4.2.1",
-    "material-design-icon-fonts-self-hosted-web": "1.0.7",
     "memo-decorator": "2.0.1",
     "mini-css-extract-plugin": "2.6.1",
     "mocha": "10.1.0",

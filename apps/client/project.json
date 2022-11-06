@@ -85,7 +85,6 @@
         "sourceMap": true,
         "styles": [
           "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
-          "node_modules/material-design-icon-fonts-self-hosted-web/iconfont/material-icons.css",
           "apps/client/src/styles.scss",
           "libs/client-core/src/lib/styles/styles.scss"
         ],
