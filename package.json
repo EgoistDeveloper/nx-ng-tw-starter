@@ -4,10 +4,6 @@
   "private": true,
   "description": "Monorepo starter: Nx, Angular, Angular Elements, Electron, NodeJS, NestJS, Firebase.",
   "license": "MIT",
-  "authors": [
-    "rfprod <zoidenmacht@zoho.com>",
-    "EgoistDeveloper <epsilonelittr@gmail.com>"
-  ],
   "scripts": {
     "affected:build": "nx affected:build",
     "affected:dep-graph": "nx affected:dep-graph",
@@ -345,5 +341,9 @@
   "engines": {
     "node": ">=16.17.1",
     "npm": ">=8.19.2"
-  }
+  },
+  "authors": [
+    "rfprod <zoidenmacht@zoho.com>",
+    "EgoistDeveloper <epsilonelittr@gmail.com>"
+  ]
 }
