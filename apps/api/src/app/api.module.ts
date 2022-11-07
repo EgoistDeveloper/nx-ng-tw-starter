@@ -1,7 +1,7 @@
 import { AppAuthModule } from '@app/backend-auth';
 import { AppDiagnosticsModule } from '@app/backend-diagnostics';
-import { AppGqlModule } from '@app/backend-gql';
-import { AppGrpcModule } from '@app/backend-grpc';
+// import { AppGqlModule } from '@app/backend-gql';
+// import { AppGrpcModule } from '@app/backend-grpc';
 import { API_ENV } from '@app/backend-interfaces';
 import { AppLoggerModule } from '@app/backend-logger';
 import { AppWebsocketModule } from '@app/backend-websocket';
@@ -26,8 +26,8 @@ import { environment } from '../environments/environment';
     AppAuthModule,
     AppWebsocketModule,
     AppLoggerModule,
-    AppGqlModule.forRoot(environment),
-    AppGrpcModule.forRoot(environment),
+    // AppGqlModule.forRoot(environment),
+    // AppGrpcModule.forRoot(environment),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
