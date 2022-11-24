@@ -4,18 +4,18 @@
   height: 100vh;
 }
 
-.container {
+.root {
+  @extend .flex-column;
   height: 100%;
-}
+  max-height: 100%;
 
-.root-container {
-  @extend .container;
-}
+  &__toolbar {
+    @extend .flex-row;
+  }
 
-.content-container {
-  @extend .container;
-  max-width: calc(100% - 2em);
-  min-height: 100vh;
-  max-height: 100vh;
-  padding: 0 1em;
+  &__content {
+    min-height: 100vh;
+    max-height: 100vh;
+    padding: 0 1em;
+  }
 }

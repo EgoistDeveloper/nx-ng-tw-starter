@@ -1,6 +1,6 @@
 {
-  "name": "client-store",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "client-store",
   "prefix": "app",
   "projectType": "library",
   "sourceRoot": "libs/client-store/src",
@@ -13,6 +13,20 @@
         "lintFilePatterns": ["libs/client-store/**/*.ts"]
       },
       "outputs": ["{options.outputFile}"]
+    },
+    "prettier-check": {
+      "executor": "./tools/executors/prettier:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/prettier/libs/client-store"]
+    },
+    "stylelint-check": {
+      "executor": "./tools/executors/stylelint:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/stylelint/libs/client-store"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",

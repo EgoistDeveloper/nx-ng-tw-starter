@@ -1,6 +1,6 @@
 {
-  "name": "client-store-theme",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "client-store-theme",
   "prefix": "app",
   "projectType": "library",
   "sourceRoot": "libs/client-store-theme/src",
@@ -13,6 +13,20 @@
         "lintFilePatterns": ["libs/client-store-theme/**/*.ts"]
       },
       "outputs": ["{options.outputFile}"]
+    },
+    "prettier-check": {
+      "executor": "./tools/executors/prettier:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/prettier/libs/client-store-theme"]
+    },
+    "stylelint-check": {
+      "executor": "./tools/executors/stylelint:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/stylelint/libs/client-store-theme"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",

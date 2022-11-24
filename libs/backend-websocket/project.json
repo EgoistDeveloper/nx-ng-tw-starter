@@ -1,6 +1,6 @@
 {
-  "name": "backend-websocket",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "backend-websocket",
   "projectType": "library",
   "sourceRoot": "libs/backend-websocket/src",
   "tags": ["scope:backend-websocket", "type:feature"],

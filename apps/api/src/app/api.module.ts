@@ -1,5 +1,6 @@
 import { AppAuthModule } from '@app/backend-auth';
 import { AppDiagnosticsModule } from '@app/backend-diagnostics';
+// PIN: disabled for now
 // import { AppGqlModule } from '@app/backend-gql';
 // import { AppGrpcModule } from '@app/backend-grpc';
 import { API_ENV } from '@app/backend-interfaces';
@@ -26,6 +27,7 @@ import { environment } from '../environments/environment';
     AppAuthModule,
     AppWebsocketModule,
     AppLoggerModule,
+    // PIN: disabled for now
     // AppGqlModule.forRoot(environment),
     // AppGrpcModule.forRoot(environment),
     ConfigModule.forRoot({

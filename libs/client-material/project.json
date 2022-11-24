@@ -1,6 +1,6 @@
 {
-  "name": "client-material",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "client-material",
   "prefix": "app",
   "projectType": "library",
   "sourceRoot": "libs/client-material/src",
@@ -13,6 +13,20 @@
         "lintFilePatterns": ["libs/client-material/**/*.ts", "libs/client-material/**/*.html"]
       },
       "outputs": ["{options.outputFile}"]
+    },
+    "prettier-check": {
+      "executor": "./tools/executors/prettier:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/prettier/libs/client-material"]
+    },
+    "stylelint-check": {
+      "executor": "./tools/executors/stylelint:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/stylelint/libs/client-material"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",

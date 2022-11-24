@@ -1,6 +1,6 @@
 {
-  "name": "backend-diagnostics",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "backend-diagnostics",
   "projectType": "library",
   "sourceRoot": "libs/backend-diagnostics/src",
   "tags": ["scope:backend-diagnostics", "type:feature"],

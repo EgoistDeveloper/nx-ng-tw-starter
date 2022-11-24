@@ -1,6 +1,6 @@
 {
-  "name": "client-directives",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "client-directives",
   "prefix": "app",
   "projectType": "library",
   "sourceRoot": "libs/client-directives/src",
@@ -13,6 +13,20 @@
         "lintFilePatterns": ["libs/client-directives/**/*.ts"]
       },
       "outputs": ["{options.outputFile}"]
+    },
+    "prettier-check": {
+      "executor": "./tools/executors/prettier:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/prettier/libs/client-directives"]
+    },
+    "stylelint-check": {
+      "executor": "./tools/executors/stylelint:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/stylelint/libs/client-directives"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",

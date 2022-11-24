@@ -4,6 +4,6 @@
  */
 export const appEnvFactory = () => ({
   meta: {
-    version: '5.5.8',
+    version: 'N/A',
   },
 });

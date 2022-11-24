@@ -1,6 +1,6 @@
 {
-  "name": "client-testing-unit",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "client-testing-unit",
   "prefix": "app",
   "projectType": "library",
   "sourceRoot": "libs/client-testing-unit/src",
@@ -13,6 +13,20 @@
         "lintFilePatterns": ["libs/client-testing-unit/**/*.ts", "libs/client-testing-unit/**/*.html"]
       },
       "outputs": ["{options.outputFile}"]
+    },
+    "prettier-check": {
+      "executor": "./tools/executors/prettier:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/prettier/libs/client-testing-unit"]
+    },
+    "stylelint-check": {
+      "executor": "./tools/executors/stylelint:check",
+      "options": {
+        "config": ""
+      },
+      "outputs": ["{workspaceRoot}/dist/stylelint/libs/client-testing-unit"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",
