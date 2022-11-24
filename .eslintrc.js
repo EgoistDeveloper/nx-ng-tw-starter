@@ -116,7 +116,12 @@ module.exports = {
     'prefer-object-spread': 'error',
     'prefer-spread': 'error',
     'prefer-promise-reject-errors': 'error',
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     quotes: 'off', // handled by typescript eslint rule
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',

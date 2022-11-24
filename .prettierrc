@@ -7,5 +7,6 @@
   "trailingComma": "all",
   "arrowParens": "avoid",
   "bracketSpacing": true,
-  "embeddedLanguageFormatting": "auto"
+  "embeddedLanguageFormatting": "auto",
+  "endOfLine": "auto"
 }
