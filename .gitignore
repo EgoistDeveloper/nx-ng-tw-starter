@@ -56,6 +56,7 @@ functions/*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/snippets.code-snippets
 
 # misc
 .angular
