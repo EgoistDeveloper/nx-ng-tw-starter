@@ -46,8 +46,7 @@
           "styles": [
             "apps/documentation/src/styles.scss",
             "libs/client-core/src/lib/styles/styles.scss",
-            "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
-            "node_modules/material-design-icon-fonts-self-hosted-web/iconfont/material-icons.css"
+            "node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
           ],
           "tsConfig": "apps/documentation/.storybook/tsconfig.json"
         }
@@ -130,7 +129,6 @@
           "apps/documentation/src/styles.scss",
           "libs/client-core/src/lib/styles/styles.scss",
           "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
-          "node_modules/material-design-icon-fonts-self-hosted-web/iconfont/material-icons.css",
           "node_modules/prismjs/themes/prism-okaidia.css",
           "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
           "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
@@ -174,13 +172,6 @@
       },
       "outputs": ["{options.outputFile}"]
     },
-    "prettier-check": {
-      "executor": "./tools/executors/prettier:check",
-      "options": {
-        "config": ""
-      },
-      "outputs": ["{workspaceRoot}/dist/prettier/apps/documentation"]
-    },
     "serve": {
       "configurations": {
         "production": {
@@ -200,13 +191,6 @@
         "configDir": "apps/documentation/.storybook",
         "port": 4400
       }
-    },
-    "stylelint-check": {
-      "executor": "./tools/executors/stylelint:check",
-      "options": {
-        "config": ""
-      },
-      "outputs": ["{workspaceRoot}/dist/stylelint/apps/documentation"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",

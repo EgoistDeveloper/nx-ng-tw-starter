@@ -125,7 +125,7 @@ function createWindow() {
   // win.maximize();
 
   // and load the index.html of the app.
-  win.loadURL('http://localhost:8080');
+  win.loadURL('http://localhost:4200');
 
   /**
    * Open the DevTools.

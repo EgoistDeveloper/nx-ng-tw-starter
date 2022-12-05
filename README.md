@@ -1,6 +1,6 @@
-# Nx Ng Starter
+# Nx Ng Tw Starter
 
-[Nx](https://nx.dev/) + [Angular](https://angular.io/) + [NestJS](https://nestjs.com/) mono-repository starter with workflow automation.
+[Nx](https://nx.dev/) + [Angular](https://angular.io/) + [Tailwind](https://tailwindcss.com/) + [NestJS](https://nestjs.com/) mono-repository starter with workflow automation.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
@@ -49,7 +49,8 @@ In order to run own copy of the project one must fulfill the following requireme
 ### Preferred package manager
 
 - [Yarn](https://www.npmjs.com/package/yarn) - preferred package manager for dependencies installation in the project root.
-- [npm](https://www.npmjs.com/package/npm) - preferred package manager for dependencies installation in the `functions` folder.
+- [NPM](https://www.npmjs.com/package/npm) - preferred package manager for dependencies installation in the `functions` folder.
+- [PNPM](https://pnpm.io/) - preferred package manager for dependencies installation in the `apps` folder.
 
 ## Package scripts reference
 
@@ -298,3 +299,10 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 ### Development methodology
 
 - [Trunk based development](https://trunkbaseddevelopment.com/)
+
+### VSCode Extensions
+
+Feel free to use the following extensions to help you with your development:
+
+- [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock): Colorize your workspace
+- [Terminals Manager](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-terminals): Manage your terminals

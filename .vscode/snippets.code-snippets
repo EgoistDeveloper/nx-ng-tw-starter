@@ -1,0 +1,32 @@
+{
+	"Create TS/JS Region Block": {
+		"scope": "javascript,typescript",
+		"prefix": "js-region-block",
+		"body": [
+			"// #region ${1:RegionName}",
+			"$2",
+			"// #endregion"
+		],
+		"description": "Create a region block for typescript or javascript"
+	},
+	"Create HTML Region Block": {
+		"scope": "html",
+		"prefix": "html-region-block",
+		"body": [
+			"<!-- #region ${1:RegionName} -->",
+			"$2",
+			"<!-- #endregion -->"
+		],
+		"description": "Create a region block for HTML"
+	},
+	"Create CSS/SCSS Region Block": {
+		"scope": "html",
+		"prefix": "css-region-block",
+		"body": [
+			"/* #region ${1:RegionName} */",
+			"$2",
+			"/* #endregion */"
+		],
+		"description": "Create a region block for CSS/SCSS"
+	}
+}
