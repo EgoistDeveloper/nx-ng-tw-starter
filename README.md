@@ -302,3 +302,4 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 ### VSCode Extensions
 
 - [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock): Colorize your workspace
+- [Terminals Manager](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-terminals): Manage your terminals
