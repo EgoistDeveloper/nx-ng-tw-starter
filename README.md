@@ -298,3 +298,7 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 ### Development methodology
 
 - [Trunk based development](https://trunkbaseddevelopment.com/)
+
+### VSCode Extensions
+
+- [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock): Colorize your workspace
