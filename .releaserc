@@ -1,0 +1,32 @@
+{
+  "branches": [
+    "master"
+  ],
+  "repositoryUrl": "https://github.com/EgoistDeveloper/nx-ng-tw-starter",
+  "tagFormat": "v${version}",
+  "preset": "angular",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/npm",
+    "@semantic-release/git",
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          "dist/**"
+        ]
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "nx run affected --target=release --args=\"--version=${nextRelease.version}\""
+      }
+    ]
+  ],
+  "dryRun": false,
+  "ci": true,
+  "debug": false
+}
