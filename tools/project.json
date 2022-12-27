@@ -1,6 +1,6 @@
 {
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
   "name": "tools",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "tools",
   "tags": ["scope:tools", "type:workspace"],
@@ -77,6 +77,16 @@
         "lintFilePatterns": ["tools/generators/**/*.ts", "tools/ts/**/*.ts", "tools/js/**/*.js", "/*.*.js"]
       },
       "outputs": ["{options.outputFile}"]
+    },
+    "lint-shell": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "shellcheck tools/shell/*.sh tools/shell/utils/*.sh"
+          }
+        ]
+      }
     },
     "migrate": {
       "executor": "nx:run-commands",
