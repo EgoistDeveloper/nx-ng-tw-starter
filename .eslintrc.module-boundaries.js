@@ -8,7 +8,7 @@ const typeConstraints = [
   },
   {
     sourceTag: 'type:feature',
-    onlyDependOnLibsWithTags: ['type:data-access', 'type:ui', 'type:util', 'type:testing-unit'],
+    onlyDependOnLibsWithTags: ['type:feature', 'type:data-access', 'type:ui', 'type:util', 'type:testing-unit'],
   },
   {
     sourceTag: 'type:data-access',
@@ -322,8 +322,10 @@ const clientConstraints = [
       'scope:client-service-worker',
       'scope:client-sidebar',
       'scope:client-store',
+      'scope:client-store-chatbot',
       'scope:client-store-feature-access',
       'scope:client-store-router',
+      'scope:client-store-sidebar',
       'scope:client-store-theme',
       'scope:client-store-user',
       'scope:client-store-websocket',
@@ -339,12 +341,8 @@ const clientConstraints = [
     sourceTag: 'scope:client-core-components',
     onlyDependOnLibsWithTags: [
       'scope:client-material',
-      'scope:client-store-chatbot',
       'scope:client-store-feature-access',
-      'scope:client-store-router',
       'scope:client-store-sidebar',
-      'scope:client-store-theme',
-      'scope:client-store-user',
       'scope:client-testing-unit',
       'scope:client-util',
     ],
@@ -360,11 +358,10 @@ const clientConstraints = [
   {
     sourceTag: 'scope:elements',
     onlyDependOnLibsWithTags: [
-      'scope:client-chatbot',
+      'scope:client-elements',
       'scope:client-core',
       'scope:client-testing-unit',
       'scope:client-util',
-      'scope:client-util-eliza',
       'scope:client-util-sentry',
     ],
   },
@@ -375,6 +372,10 @@ const clientConstraints = [
   {
     sourceTag: 'scope:elements-testing',
     onlyDependOnLibsWithTags: [],
+  },
+  {
+    sourceTag: 'scope:client-elements',
+    onlyDependOnLibsWithTags: ['scope:client-chatbot', 'scope:client-testing-unit', 'scope:client-util', 'scope:client-util-eliza'],
   },
 ];
 
