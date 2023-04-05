@@ -1,10 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { trackChanges } from '@app/client-util';
-
-interface IAppHomePageChanges extends SimpleChanges {
-  timer: SimpleChange;
-  markedInstructions: SimpleChange;
-}
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { TDiagnosticData } from '@app/client-store-diagnostics';
 
 @Component({
   selector: 'app-diagnostics-home-page',
@@ -12,19 +7,10 @@ interface IAppHomePageChanges extends SimpleChanges {
   styleUrls: ['./diagnostics-home-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppDiagnosticsHomePage implements OnChanges {
-  @Input() public timer = '';
+export class AppDiagnosticsHomePage {
+  @Input() public users: number | null = null;
 
-  @Input() public markedInstructions = '';
+  @Input() public staticData: TDiagnosticData[] | null = null;
 
-  @trackChanges<AppDiagnosticsHomePage, string>('timer', 'timerChanges')
-  public ngOnChanges(changes: IAppHomePageChanges) {
-    return changes;
-  }
-
-  public timerChanges(value?: string): void {
-    const index = parseInt(value?.replace(/[a-zA-Z\s]/gi, '') ?? '', 10);
-    const divisor = 2;
-    this.timer = index % divisor ? `The timer is freaking out ${Math.pow(divisor, index)}` : value ?? '';
-  }
+  @Input() public dynamicData: TDiagnosticData[] | null = null;
 }

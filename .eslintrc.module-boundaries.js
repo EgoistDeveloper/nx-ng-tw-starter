@@ -67,7 +67,6 @@ const backendConstraints = [
       'scope:backend-gql',
       'scope:backend-interfaces',
       'scope:backend-logger',
-      'scope:backend-websocket',
       'scope:proto',
     ],
   },
@@ -77,7 +76,7 @@ const backendConstraints = [
   },
   {
     sourceTag: 'scope:backend-diagnostics',
-    onlyDependOnLibsWithTags: ['scope:backend-interfaces'],
+    onlyDependOnLibsWithTags: [],
   },
   {
     sourceTag: 'scope:backend-grpc',
@@ -94,10 +93,6 @@ const backendConstraints = [
   {
     sourceTag: 'scope:backend-logger',
     onlyDependOnLibsWithTags: ['scope:proto'],
-  },
-  {
-    sourceTag: 'scope:backend-websocket',
-    onlyDependOnLibsWithTags: ['scope:backend-interfaces', 'scope:proto'],
   },
 ];
 
@@ -196,12 +191,13 @@ const clientConstraints = [
     onlyDependOnLibsWithTags: ['scope:client-testing-unit', 'scope:client-util', 'scope:client-util-ngrx'],
   },
   {
-    sourceTag: 'scope:client-store-websocket',
-    onlyDependOnLibsWithTags: ['scope:client-testing-unit', 'scope:client-util', 'scope:client-util-ngrx'],
-  },
-  {
-    sourceTag: 'scope:client-services',
-    onlyDependOnLibsWithTags: ['scope:client-testing-unit', 'scope:client-util'],
+    sourceTag: 'scope:client-store-diagnostics',
+    onlyDependOnLibsWithTags: [
+      'scope:client-store-http-progress',
+      'scope:client-testing-unit',
+      'scope:client-util',
+      'scope:client-util-ngrx',
+    ],
   },
   {
     sourceTag: 'scope:client-service-worker',
@@ -227,17 +223,12 @@ const clientConstraints = [
   {
     sourceTag: 'scope:client-diagnostics',
     onlyDependOnLibsWithTags: [
-      'scope:client-core',
       'scope:client-d3-charts',
-      'scope:client-material',
-      'scope:client-services',
-      'scope:client-store',
+      'scope:client-store-diagnostics',
       'scope:client-store-http-api',
+      'scope:client-store-user',
       'scope:client-store-websocket',
-      'scope:client-translate',
       'scope:client-testing-unit',
-      'scope:client-util',
-      'scope:proto',
     ],
   },
   {
@@ -318,7 +309,6 @@ const clientConstraints = [
       'scope:client-grpc',
       'scope:client-material',
       'scope:client-pwa-offline',
-      'scope:client-services',
       'scope:client-service-worker',
       'scope:client-sidebar',
       'scope:client-store',
@@ -328,7 +318,7 @@ const clientConstraints = [
       'scope:client-store-sidebar',
       'scope:client-store-theme',
       'scope:client-store-user',
-      'scope:client-store-websocket',
+      'scope:client-store-diagnostics',
       'scope:client-translate',
       'scope:client-testing-unit',
       'scope:client-util',

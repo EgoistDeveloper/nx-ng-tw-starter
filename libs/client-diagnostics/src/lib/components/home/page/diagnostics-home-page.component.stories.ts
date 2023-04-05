@@ -1,5 +1,6 @@
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from '@app/client-material';
 import { Args, Meta, Story } from '@storybook/angular';
 
 import { AppDiagnosticsHomePage } from './diagnostics-home-page.component';
@@ -11,7 +12,7 @@ export default {
 
 const story: Story<AppDiagnosticsHomePage> = (args: Args) => ({
   moduleMetadata: {
-    imports: [BrowserAnimationsModule, AppMaterialModule.forRoot()],
+    imports: [BrowserAnimationsModule, MatIconModule, MatListModule],
     declarations: [AppDiagnosticsHomePage],
   },
   props: {
@@ -21,8 +22,9 @@ const story: Story<AppDiagnosticsHomePage> = (args: Args) => ({
 
 export const primary = story.bind({});
 primary.args = {
-  timer: '1',
-  markedInstructions: 'Marked instructions',
+  users: 1,
+  staticData: [{ name: 'Static test', value: 1 }],
+  dynamicData: [{ name: 'Dynamic test', value: 1 }],
 };
 primary.parameters = {
   /**
